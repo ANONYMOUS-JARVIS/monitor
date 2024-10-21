@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Combine Rules</h2>
+<form method="POST" action="{% url 'combine_rules' %}">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="rule_1">Rule 1:</label>
+        <input type="text" class="form-control" id="rule_1" name="rules" placeholder="Enter first rule">
+    </div>
+    <div class="form-group">
+        <label for="rule_2">Rule 2:</label>
+        <input type="text" class="form-control" id="rule_2" name="rules" placeholder="Enter second rule">
+    </div>
+    <button type="submit" class="btn btn-primary">Combine Rules</button>
+</form>
+
+{% if combined_ast_id %}
+<div class="alert alert-success mt-3" role="alert">
+    Rules combined successfully! Combined AST ID: {{ combined_ast_id }}
+</div>
+{% endif %}
+{% endblock %}

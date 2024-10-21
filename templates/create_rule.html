@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Create Rule</h2>
+<form method="POST" action="{% url 'create_rule' %}">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="rule_string">Rule String:</label>
+        <input type="text" class="form-control" id="rule_string" name="rule_string" placeholder="Enter your rule">
+    </div>
+    <button type="submit" class="btn btn-primary">Create Rule</button>
+</form>
+
+{% if ast_id %}
+<div class="alert alert-success mt-3" role="alert">
+    Rule created successfully! AST ID: {{ ast_id }}
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Evaluate Rule</h2>
+<form method="POST" action="{% url 'evaluate_rule' %}">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="ast_id">AST ID:</label>
+        <input type="text" class="form-control" id="ast_id" name="ast_id" placeholder="Enter AST ID">
+    </div>
+    <div class="form-group">
+        <label for="data">Data (JSON Format):</label>
+        <textarea class="form-control" id="data" name="data" rows="3" placeholder='{"age": 35, "department": "Sales", "salary": 60000, "experience": 3}'></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Evaluate Rule</button>
+</form>
+
+{% if result is not None %}
+<div class="alert alert-info mt-3" role="alert">
+    Evaluation Result: {{ result }}
+</div>
+{% endif %}
+{% endblock %}
